@@ -1,5 +1,6 @@
 package com.dalsom.management.entity;
 
+import com.dalsom.management.entity.enums.CommentType;
 import lombok.Getter;
 import lombok.Setter;
 

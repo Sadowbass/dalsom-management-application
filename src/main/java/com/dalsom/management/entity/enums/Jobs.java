@@ -1,4 +1,4 @@
-package com.dalsom.management.entity;
+package com.dalsom.management.entity.enums;
 
 public enum Jobs {
     디스트로이어, 워로드, 버서커, 홀리나이트,
