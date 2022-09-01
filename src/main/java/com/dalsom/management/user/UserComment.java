@@ -1,6 +1,6 @@
-package com.dalsom.management.entity;
+package com.dalsom.management.user;
 
-import com.dalsom.management.entity.enums.CommentType;
+import com.dalsom.management.common.entity.BaseEntity;
 import lombok.Getter;
 import lombok.Setter;
 

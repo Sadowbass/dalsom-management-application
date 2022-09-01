@@ -1,4 +1,4 @@
-package com.dalsom.management.entity.enums;
+package com.dalsom.management.user;
 
 public enum UserStatus {
     JOIN, LEAVE, BANNED

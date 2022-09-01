@@ -1,4 +1,4 @@
-package com.dalsom.management.entity.enums;
+package com.dalsom.management.guild;
 
 public enum GuildRole {
     ADMIN, MEMBER

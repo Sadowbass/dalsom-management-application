@@ -1,7 +1,5 @@
-package com.dalsom.management.entity;
+package com.dalsom.management.admin;
 
-import com.dalsom.management.entity.enums.AdminRole;
-import com.dalsom.management.repository.AdminRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest
 @Transactional
-class EntityTest {
+class AdminRepositoryTest {
 
     @PersistenceContext
     EntityManager em;
@@ -26,14 +24,13 @@ class EntityTest {
     AdminRepository adminRepository;
 
     @Test
-    void signInAdmin() {
+    void save() {
         //given
-        Admin admin = new Admin();
-        admin.setName("샷건");
-        admin.setLoginId("asd");
-        admin.setPassword("asd");
-        admin.setRole(AdminRole.DEVELOPER);
-        adminRepository.saveAndFlush(admin); // for check query
+        Admin admin = Admin.createNewAdmin("test", "test", "샷건");
+
+        adminRepository.save(admin); // for check query
+        em.flush();
+        em.clear();
 
         //when
         Admin savedAdmin = adminRepository.findById(admin.getId()).get();
@@ -46,20 +43,15 @@ class EntityTest {
     }
 
     @Test
-    void deleteAdmin() throws Exception {
+    void delete() throws Exception {
         //given
-        Admin admin = new Admin();
-        admin.setName("샷건");
-        admin.setLoginId("asd");
-        admin.setPassword("asd");
-        admin.setRole(AdminRole.DEVELOPER);
-
+        Admin admin = Admin.createNewAdmin("test", "test", "샷건");
         adminRepository.save(admin);
-        adminRepository.flush();
+        em.flush();
 
         //when
         adminRepository.delete(admin);
-        adminRepository.flush();
+        em.flush();
 
         //then
         Optional<Admin> result = adminRepository.findById(admin.getId());
