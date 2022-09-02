@@ -14,3 +14,6 @@ spring:
     username: dalsom_admin
     password: dalsom
     url: jdbc:mariadb://localhost:3306/dalsom
+  h2:
+    console:
+      enabled: false
