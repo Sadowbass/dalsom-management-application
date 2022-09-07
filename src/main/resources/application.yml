@@ -1,7 +1,7 @@
 spring:
   jpa:
     hibernate:
-#      ddl-auto: create
+    #      ddl-auto: create
     properties:
       hibernate:
         show_sql: true
@@ -14,4 +14,7 @@ spring:
     username: dalsom
     password: dalsom
     url: jdbc:mariadb://localhost:3306/dalsom
+  h2:
+    console:
+      enabled: false
 
