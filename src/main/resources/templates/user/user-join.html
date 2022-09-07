@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="layoutTemplate/template :: layout(~{::title}, ~{::main})">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/bootstrap.min.css}" href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/dalsom.css}" href="/static/css/dalsom.css" rel="stylesheet" type="text/css">
+    <script th:src="@{/js/bootstrap.bundle.min.js}" src="/static/js/bootstrap.bundle.min.js"></script>
+    <script th:src="@{/js/dalsom.js}" src="/static/js/dalsom.js"></script>
+    <title>회원 가입</title>
+</head>
+<body>
+<div class="container-fluid wrapper row">
+    <aside class="flex-shrink-0 p-4 align-items-center cotton-color col-2 sidebar">
+        <a href="#" class="d-flex align-items-center pb-3 mb-3 text-decoration-none border-bottom">
+            <span class="fs-5 fw-semibold text-black">관리자 메인</span>
+        </a>
+        <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
+                        data-bs-target="#guild-collapse" aria-expanded="true">길드관리
+                </button>
+                <div class="collapse" id="guild-collapse">
+                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
+                        <li>
+                            <a href="#" class="link-dark rounded">길드현황</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link-dark rounded">건의사항</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
+                        data-bs-target="#user-collapse" aria-expanded="true">회원관리
+                </button>
+                <div class="collapse" id="user-collapse">
+                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
+                        <li>
+                            <a href="#" class="link-dark rounded">회원가입</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link-dark rounded">회원목록</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
+                        data-bs-target="#admin-collapse" aria-expanded="true">운영진관리
+                </button>
+                <div class="collapse" id="admin-collapse">
+                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
+                        <li>
+                            <a href="#" class="link-dark rounded">운영진목록</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link-dark rounded">운영진가입승인</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </aside>
+    <main class="text-center col-10 overflow-auto">
+        <div class="row p-5">
+            <form action="" class="row mb-5">
+                <div class="col-6 ps-5 pe-5">
+                    <h1>유저정보</h1>
+                    <hr>
+                    <div class="d-flex justify-content-between mt-4 mb-5 align-items-center">
+                        <div class="col-6">
+                            <label for="characterName">캐릭터명</label>
+                            <input type="text" class="form-control" id="characterName" name="characterName">
+                        </div>
+                        <div>
+                            <button class="btn btn-primary me-1">캐릭터 조회</button>
+                            <button class="btn btn-primary">수기 입력</button>
+                        </div>
+                    </div>
+                    <label for="joinDate">가입일</label>
+                    <input type="date" class="form-control" id="joinDate" name="joinDate">
+                </div>
+                <div class="col-6 ps-5 pe-5">
+                    <h1>캐릭터 정보</h1>
+                    <hr>
+                    <div style="width: 60%; margin: auto">
+                        <div class="mb-4">
+                            <label for="job">직업</label>
+                            <input type="text" class="form-control" id="job" name="job" list="jop-options">
+                            <datalist id="jop-options">
+                                <option value="건슬링어">건슬링어</option>
+                                <option value="기상술사">기상술사</option>
+                                <option value="리퍼">리퍼</option>
+                                <option value="기공사">기공사</option>
+                                <option value="도화가">도화가</option>
+                            </datalist>
+                        </div>
+                        <div class="mb-4">
+                            <label for="level">전투레벨</label>
+                            <input type="number" class="form-control" id="level" name="level">
+                        </div>
+                        <div class="mb-4">
+                            <label for="itemLevel">전투레벨</label>
+                            <input type="number" class="form-control" id="itemLevel" name="itemLevel">
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <button class="btn btn-primary"
+                    data-bs-toggle="tooltip" data-bs-placement="top" title="먼저 캐릭터를 조회 해주세요"
+                    disabled style="width: 30%; height: 4rem; margin: auto">가입
+            </button>
+        </div>
+    </main>
+</div>
+<script>
+    setDateValue(document);
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 spring:
   jpa:
     hibernate:
-      ddl-auto: none
+#      ddl-auto: create
     properties:
       hibernate:
         show_sql: true
@@ -11,6 +11,7 @@ spring:
   #      database: h2
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
-    username: dalsom_admin
+    username: dalsom
     password: dalsom
     url: jdbc:mariadb://localhost:3306/dalsom
+

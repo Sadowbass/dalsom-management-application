@@ -1,0 +1,21 @@
+.form-box {
+    background-color: #fff;
+    border-radius: 1.5rem;
+    margin: 10rem auto auto;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.form-box form {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-box form > div {
+    width: 50%;
+    margin: auto
+}
+
+::placeholder {
+    text-align: center;
+}

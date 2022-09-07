@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      th:replace="layoutTemplate/template :: layout(~{::title}, ~{::main})">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:href="@{/css/bootstrap.min.css}" href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/dalsom.css}" href="/static/css/dalsom.css" rel="stylesheet" type="text/css">
+    <script defer th:src="@{/js/bootstrap.bundle.min.js}" src="/static/js/bootstrap.bundle.min.js"></script>
+    <title>달콤한 솜사탕</title>
+</head>
+<body>
+<div class="container-fluid wrapper row">
+    <aside class="flex-shrink-0 p-4 align-items-center cotton-color col-2 sidebar">
+        <a href="#" class="d-flex align-items-center pb-3 mb-3 text-decoration-none border-bottom">
+            <span class="fs-5 fw-semibold text-black">관리자 메인</span>
+        </a>
+        <ul class="list-unstyled ps-0">
+            <li class="mb-1">
+                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
+                        data-bs-target="#guild-collapse" aria-expanded="true">길드관리
+                </button>
+                <div class="collapse" id="guild-collapse">
+                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
+                        <li>
+                            <a href="#" class="link-dark rounded">길드현황</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link-dark rounded">건의사항</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
+                        data-bs-target="#user-collapse" aria-expanded="true">회원관리
+                </button>
+                <div class="collapse" id="user-collapse">
+                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
+                        <li>
+                            <a href="#" class="link-dark rounded">회원목록</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="mb-1">
+                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
+                        data-bs-target="#admin-collapse" aria-expanded="true">운영진관리
+                </button>
+                <div class="collapse" id="admin-collapse">
+                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
+                        <li>
+                            <a href="#" class="link-dark rounded">운영진목록</a>
+                        </li>
+                        <li>
+                            <a href="#" class="link-dark rounded">운영진가입승인</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </aside>
+    <main class="text-center col-9 overflow-auto">
+        <div class="p-5">
+
+            <h1>
+                <span>달콤한 솜사탕</span>
+                <span class="text-muted figure-caption">60/60</span>
+            </h1>
+            <hr>
+            <div class="row">
+                <div class="card col-2 mb-3 ms-3 me-3">
+                    <div class="card-body">
+                        <figure>
+                            <h5 class="card-title mb-0">
+                                Howler
+                            </h5>
+                            <figcaption class="figure-caption">Howler</figcaption>
+                        </figure>
+                        <h6 class="card-subtitle text-muted mb-2">데빌헌터</h6>
+                        <p class="card-text">
+                            <span>아이템 레벨 : 1595 </span>
+                            <span>길드마스터</span>
+                        </p>
+                        <div class="d-flex">
+                            <a href="#" class="text-decoration-none m-1">캐릭터 정보<br>(로아와)</a>
+                            <a href="#" class="text-decoration-none m-1">길드원 정보<br>정보 확인</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-2 mb-3 ms-3 me-3">
+                    <div class="card-body">
+                        <figure>
+                            <h5 class="card-title mb-0">
+                                챠힘
+                            </h5>
+                            <figcaption class="figure-caption">챠힘</figcaption>
+                        </figure>
+                        <h6 class="card-subtitle text-muted mb-2">스카우터</h6>
+                        <p class="card-text">
+                            <span>아이템 레벨 : 1,587 </span>
+                            <span>관리자</span>
+                        </p>
+                        <div class="d-flex">
+                            <a href="#" class="text-decoration-none m-1">캐릭터 정보<br>(로아와)</a>
+                            <a href="#" class="text-decoration-none m-1">길드원 정보<br>정보 확인</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-2 mb-3 ms-3 me-3">
+                    <div class="card-body">
+                        <figure>
+                            <h5 class="card-title mb-0">
+                                휄아
+                            </h5>
+                            <figcaption class="figure-caption">휄아</figcaption>
+                        </figure>
+                        <h6 class="card-subtitle text-muted mb-2">창술사</h6>
+                        <p class="card-text">
+                            <span>아이템 레벨 : 1,595 </span>
+                            <span>관리자</span>
+                        </p>
+                        <div class="d-flex">
+                            <a href="#" class="text-decoration-none m-1">캐릭터 정보<br>(로아와)</a>
+                            <a href="#" class="text-decoration-none m-1">길드원 정보<br>정보 확인</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-2 mb-3 ms-3 me-3">
+                    <div class="card-body">
+                        <figure>
+                            <h5 class="card-title mb-0">
+                                o현석
+                            </h5>
+                            <figcaption class="figure-caption">o현석</figcaption>
+                        </figure>
+                        <h6 class="card-subtitle text-muted mb-2">가짜블레이드</h6>
+                        <p class="card-text">
+                            <span>아이템 레벨 : 1,572 </span>
+                            <span>관리자</span>
+                        </p>
+                        <div class="d-flex">
+                            <a href="#" class="text-decoration-none m-1">캐릭터 정보<br>(로아와)</a>
+                            <a href="#" class="text-decoration-none m-1">길드원 정보<br>정보 확인</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-2 mb-3 ms-3 me-3">
+                    <div class="card-body">
+                        <figure>
+                            <h5 class="card-title mb-0">
+                                개발하다샷건침
+                            </h5>
+                            <figcaption class="figure-caption">개발하다샷건침</figcaption>
+                        </figure>
+                        <h6 class="card-subtitle text-muted mb-2">건슬링어</h6>
+                        <p class="card-text">
+                            <span>아이템 레벨 : 1540 </span>
+                            <span>관리자</span>
+                        </p>
+                        <div class="d-flex">
+                            <a href="#" class="text-decoration-none m-1">캐릭터 정보<br>(로아와)</a>
+                            <a href="#" class="text-decoration-none m-1">길드원 정보<br>정보 확인</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-2 mb-3 ms-3 me-3">
+                    <div class="card-body">
+                        <figure>
+                            <h5 class="card-title mb-0">
+                                유저1
+                            </h5>
+                            <figcaption class="figure-caption">유저1</figcaption>
+                        </figure>
+                        <h6 class="card-subtitle text-muted mb-2">기상술사</h6>
+                        <p class="card-text">
+                            <span>아이템 레벨 : 1595 </span>
+                            <span>길드원</span>
+                        </p>
+                        <div class="d-flex">
+                            <a href="#" class="text-decoration-none m-1">캐릭터 정보<br>(로아와)</a>
+                            <a href="#" class="text-decoration-none m-1">길드원 정보<br>정보 확인</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-2 mb-3 ms-3 me-3">
+                    <div class="card-body">
+                        <figure>
+                            <h5 class="card-title mb-0">
+                                유저2
+                            </h5>
+                            <figcaption class="figure-caption">유저2</figcaption>
+                        </figure>
+                        <h6 class="card-subtitle text-muted mb-2">기상술사</h6>
+                        <p class="card-text">
+                            <span>아이템 레벨 : 1595 </span>
+                            <span>길드원</span>
+                        </p>
+                        <div class="d-flex">
+                            <a href="#" class="text-decoration-none m-1">캐릭터 정보<br>(로아와)</a>
+                            <a href="#" class="text-decoration-none m-1">길드원 정보<br>정보 확인</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
