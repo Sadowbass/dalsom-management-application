@@ -1,6 +1,8 @@
 package com.dalsom.management.common.config.auth;
 
 import com.dalsom.management.admin.Admin;
+import com.dalsom.management.admin.AdminRole;
+import com.dalsom.management.admin.AdminStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,6 +15,10 @@ public class PrincipalDetails implements UserDetails {
 
     public PrincipalDetails(Admin admin) {
         this.admin = admin;
+    }
+
+    public AdminRole getRole() {
+        return admin.getRole();
     }
 
     @Override
@@ -50,6 +56,6 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return admin.getStatus() == AdminStatus.APPROVED;
     }
 }

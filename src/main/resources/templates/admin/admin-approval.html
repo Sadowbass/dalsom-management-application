@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"
-      th:replace="layoutTemplate/template :: layout(~{::title}, ~{::main})">
+      th:replace="layoutTemplate/template :: layoutWithScript(~{::title}, ~{::main}, ~{::script})">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -75,7 +75,21 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr th:each="each : ${list}">
+                    <td th:text="${eachStat.count}">11</td>
+                    <td th:text="${each.name}">o현석</td>
+                    <td th:text="${each.loginId}">test_id1</td>
+                    <td th:text="${each.applicationDate}">2022-01-01</td>
+                    <td>
+                        <button class="btn btn-sm btn-primary m-1" th:value="${each.id}"
+                                th:classappend="btn-approve">승인
+                        </button>
+                        <button class="btn btn-sm btn-danger" th:value="${each.id}"
+                                th:classappend="btn-refuse">거절
+                        </button>
+                    </td>
+                </tr>
+                <tr th:remove="all">
                     <td>11</td>
                     <td>o현석</td>
                     <td>test_id1</td>
@@ -85,7 +99,7 @@
                         <button class="btn btn-sm btn-danger">거절</button>
                     </td>
                 </tr>
-                <tr>
+                <tr th:remove="all">
                     <td>12</td>
                     <td>개발하다샷건침</td>
                     <td>test_id2</td>
@@ -97,8 +111,69 @@
                 </tr>
                 </tbody>
             </table>
+
+            <div class="modal" tabindex="-1" id="spinnerModal">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="spinner-border text-primary mb-3" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p>처리중입니다. 잠시만 기다려주세요</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 </div>
+<script th:inline="javascript">
+    let approvalEvent = function (btn, command) {
+        let url;
+        let modal = new bootstrap.Modal(document.getElementById("spinnerModal"));
+
+        if (command === "approve") {
+            url = `/admin/approval/${btn.value}`;
+        } else if (command === "refuse") {
+            url = `/admin/approval/refuse/${btn.value}`;
+        } else {
+            throw "wrong command";
+        }
+
+        return function () {
+            let httpRequest = new XMLHttpRequest();
+
+            httpRequest.onreadystatechange = function () {
+                if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                    if (httpRequest.status === 200) {
+                        btn.parentElement.parentElement.remove();
+                    } else {
+                        console.log(httpRequest.status);
+                        console.log(httpRequest.responseText);
+                        alert("잘못된 응답입니다. 잠시 후 다시 시도해주십시오");
+                    }
+                    modal.hide();
+                } else {
+                }
+            }
+
+            modal.show();
+
+            httpRequest.open("POST", url, true);
+            httpRequest.send(null);
+        };
+    }
+
+    let approveBtns = document.querySelectorAll(".btn-approve");
+    approveBtns.forEach((btn) => {
+        btn.addEventListener("click", approvalEvent(btn, "approve"));
+    })
+
+    let refuseBtns = document.querySelectorAll(".btn-refuse");
+    refuseBtns.forEach((btn) => {
+        btn.addEventListener("click", approvalEvent(btn, "refuse"));
+    })
+</script>
 </body>
 </html>

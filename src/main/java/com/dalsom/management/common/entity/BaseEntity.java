@@ -26,7 +26,7 @@ public abstract class BaseEntity {
     private String lastModifiedBy;
 
     @PrePersist
-    private void prePersist() {
+    protected void prePersist() {
         this.createdDate = LocalDateTime.now();
         this.createdBy = "system";
         this.lastModifiedDate = LocalDateTime.now();
@@ -34,7 +34,7 @@ public abstract class BaseEntity {
     }
 
     @PreUpdate
-    private void preUpdate() {
+    protected void preUpdate() {
         this.lastModifiedDate = LocalDateTime.now();
         this.lastModifiedBy = "system";
     }

@@ -11,21 +11,23 @@
             <div>
                 <h1>달콤한 솜사탕<br>길드 관리 시스템</h1>
             </div>
-            <form action="#" method="POST" class="row" id="loginForm">
+            <form action="/login" method="POST" class="row" id="loginForm" th:object="${form}">
                 <div>
                     <div class="mb-2">
                         <label for="loginId" class="form-label">로그인 아이디</label>
-                        <input type="text" class="form-control" id="loginId" name="loginId" placeholder="아이디">
+                        <input type="text" th:errorclass="form-error" class="form-control" id="loginId" name="loginId" placeholder="아이디" th:value="*{loginId}">
+                        <span class="form-error" th:errors="*{loginId}">아이디는 필수입니다</span>
                     </div>
                     <div class="mb-2">
                         <label for="password" class="form-label">비밀번호</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="비밀번호">
+                        <input type="password" th:errorclass="form-error" class="form-control" id="password" name="password" placeholder="비밀번호">
+                        <span class="form-error" th:errors="*{password}">비밀번호는 필수입니다</span>
                     </div>
                 </div>
             </form>
             <div>
                 <button class="btn btn-primary" form="loginForm">로그인</button>
-                <a href="#" class="btn btn-danger" role="button">관리자 등록</a>
+                <a href="/join" class="btn btn-danger" role="button">관리자 등록</a>
             </div>
         </div>
     </main>

@@ -19,3 +19,12 @@
 ::placeholder {
     text-align: center;
 }
+
+.form-error {
+    color: red;
+}
+
+.form-error:focus {
+    border-color: red;
+    box-shadow: 0 1px 1px red inset, 0 0 8px red;
+}

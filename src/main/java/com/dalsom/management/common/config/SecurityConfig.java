@@ -19,15 +19,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable();
         httpSecurity.authorizeRequests()
-                .antMatchers("/user/**").authenticated()
+//                .antMatchers("/user/**").authenticated()
 //                .antMatchers("/manager/**").hasAnyRole("ROLE_ADMIN", "ROLE_MANAGER") hasRole, hasAnyRole의 경우 ROLE_이 들어가면 exception이 발생한다
-                .antMatchers("/manager/**").access("hasRole('ADMIN') or hasRole('MASTER')")
-                .antMatchers("/admin/**").access("hasRole('ADMIN')")
+//                .antMatchers("/manager/**").access("hasRole('ADMIN') or hasRole('MASTER')")
+//                .antMatchers("/admin/**").access("hasRole('ADMIN')")q
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login").loginProcessingUrl("/admin-login").usernameParameter("loginId")
-                .defaultSuccessUrl("/");
+                .loginPage("/login").loginProcessingUrl("/login").usernameParameter("loginId")
+                .defaultSuccessUrl("/")
+                .failureForwardUrl("/login-failed")
+        ;
 
         return httpSecurity.build();
     }

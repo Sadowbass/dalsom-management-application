@@ -33,6 +33,7 @@ public class Characters extends BaseEntity {
         characterData.verifyCharacterData();
 
         Characters character = new Characters();
+        character.setUser(user);
         character.setCharacterData(characterData);
         return character;
     }
