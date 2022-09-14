@@ -1,0 +1,17 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        #    database: mysql
+        #    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+        database: h2
+  datasource:
+    driver-class-name: org.h2.Driver
+  h2:
+    console:
+      enabled: false
+

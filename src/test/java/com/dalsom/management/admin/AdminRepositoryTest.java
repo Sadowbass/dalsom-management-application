@@ -79,6 +79,6 @@ class AdminRepositoryTest {
         List<Admin> result = adminRepository.findAllByStatus(AdminStatus.NOT_APPROVED, Sort.by(Sort.Direction.ASC, "createdDate"));
 
         //then
-        assertThat(result).hasSize(2);
+        assertThat(result).hasSize(5);
     }
 }

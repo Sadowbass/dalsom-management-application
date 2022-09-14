@@ -20,18 +20,10 @@ public class AdminListDto {
     private String loginId;
     private AdminRole role;
     private LocalDateTime createdDate;
-    private boolean canChange = false;
-
-    public AdminListDto(Long id, String name, String loginId, AdminRole role, LocalDateTime createdDate) {
-        this.id = id;
-        this.name = name;
-        this.loginId = loginId;
-        this.role = role;
-        this.createdDate = createdDate;
-    }
+    private boolean canChange;
 
     public static AdminListDto convertAdminToDto(Admin admin) {
-        return new AdminListDto(admin.getId(), admin.getName(), admin.getLoginId(), admin.getRole(), admin.getCreatedDate());
+        return new AdminListDto(admin.getId(), admin.getName(), admin.getLoginId(), admin.getRole(), admin.getCreatedDate(), false);
     }
 
     public static AdminListDto convertAdminToDto(Admin admin, AdminRole handler) {

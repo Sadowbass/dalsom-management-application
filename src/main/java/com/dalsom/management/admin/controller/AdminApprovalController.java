@@ -4,6 +4,7 @@ import com.dalsom.management.admin.Admin;
 import com.dalsom.management.admin.AdminRepository;
 import com.dalsom.management.admin.AdminService;
 import com.dalsom.management.admin.dto.AdminApprovalDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -13,15 +14,11 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class AdminApprovalController {
 
     private final AdminService adminService;
     private final AdminRepository adminRepository;
-
-    public AdminApprovalController(AdminService adminService, AdminRepository adminRepository) {
-        this.adminService = adminService;
-        this.adminRepository = adminRepository;
-    }
 
     @GetMapping("approval")
     public String showList(Model model) {
