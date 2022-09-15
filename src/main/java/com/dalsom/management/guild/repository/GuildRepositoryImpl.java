@@ -52,8 +52,8 @@ public class GuildRepositoryImpl implements GuildRepositoryCustom {
         return queryFactory
                 .from(guilds)
                 .join(guilds.guildCharacters, guildCharacters)
-                .join(guildCharacters.character, QCharacters.characters)
-                .join(QCharacters.characters.user, user)
+                .join(guildCharacters.character, characters)
+                .join(characters.user, user)
                 .join(user.mainCharacter, mainCharacter)
                 .where(guilds.id.eq(id))
                 .transform(
@@ -66,10 +66,10 @@ public class GuildRepositoryImpl implements GuildRepositoryCustom {
                                                 new QGuildCharactersDto(
                                                         user.id.as("userId"),
                                                         user.mainCharacter.characterData.characterName.as("mainCharacterName"),
-                                                        QCharacters.characters.characterData.characterName,
+                                                        characters.characterData.characterName,
                                                         guildCharacters.role.as("guildRole"),
-                                                        QCharacters.characters.characterData.level,
-                                                        QCharacters.characters.characterData.itemLevel
+                                                        characters.characterData.level,
+                                                        characters.characterData.itemLevel
                                                 )
                                         ).as("characters")
                                 )

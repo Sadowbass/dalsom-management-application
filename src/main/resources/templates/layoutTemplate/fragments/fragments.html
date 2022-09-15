@@ -6,8 +6,6 @@
     <title th:replace="${title}">관리자 승인 페이지</title>
     <link th:href="@{/css/bootstrap.min.css}" href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link th:href="@{/css/dalsom.css}" href="/static/css/dalsom.css" rel="stylesheet" type="text/css">
-    <script th:src="@{/js/bootstrap.bundle.min.js}" src="/static/js/bootstrap.bundle.min.js"></script>
-    <script th:src="@{/js/dalsom.js}" src="/static/js/dalsom.js"></script>
 
     <th:block th:replace="${customTags}"/>
 </head>
@@ -64,4 +62,10 @@
         </li>
     </ul>
 </aside>
+
+<th:block th:fragment="script(others)">
+    <script defer th:src="@{/js/bootstrap.bundle.min.js}" src="/static/js/bootstrap.bundle.min.js"></script>
+    <script defer th:src="@{/js/dalsom.js}" src="/static/js/dalsom.js"></script>
+    <th:block th:replace="${others}"/>
+</th:block>
 </html>

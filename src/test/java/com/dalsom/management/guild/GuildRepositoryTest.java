@@ -8,7 +8,7 @@ import com.dalsom.management.character.Characters;
 import com.dalsom.management.character.Jobs;
 import com.dalsom.management.guild.repository.GuildRepository;
 import com.dalsom.management.user.User;
-import com.dalsom.management.user.UserRepository;
+import com.dalsom.management.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,10 +1,10 @@
 package com.dalsom.management.user;
 
 import com.dalsom.management.admin.Admin;
-import com.dalsom.management.admin.repository.AdminRepository;
 import com.dalsom.management.admin.AdminRole;
+import com.dalsom.management.admin.repository.AdminRepository;
 import com.dalsom.management.character.CharacterRepository;
-import org.junit.jupiter.api.BeforeEach;
+import com.dalsom.management.user.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,7 +33,6 @@ class UserRepositoryTest {
     @PersistenceContext
     EntityManager em;
 
-    @BeforeEach
     void init() {
         Admin admin = Admin.createNewAdmin("test", "test", "샷건");
         admin.changeAdminRole(AdminRole.DEVELOPER);
