@@ -2,6 +2,7 @@ package com.dalsom.management.admin.dto;
 
 import com.dalsom.management.admin.Admin;
 import com.dalsom.management.admin.AdminRole;
+import com.querydsl.core.annotations.QueryProjection;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,15 @@ public class AdminListDto {
     private AdminRole role;
     private LocalDateTime createdDate;
     private boolean canChange;
+
+    @QueryProjection
+    public AdminListDto(Long id, String name, String loginId, AdminRole role, LocalDateTime createdDate) {
+        this.id = id;
+        this.name = name;
+        this.loginId = loginId;
+        this.role = role;
+        this.createdDate = createdDate;
+    }
 
     public static AdminListDto convertAdminToDto(Admin admin) {
         return new AdminListDto(admin.getId(), admin.getName(), admin.getLoginId(), admin.getRole(), admin.getCreatedDate(), false);

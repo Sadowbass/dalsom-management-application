@@ -82,7 +82,7 @@
                     <td th:text="${each.name}">Howler</td>
                     <td th:text="${each.loginId}">test_id1</td>
                     <td th:text="${each.role.koreanName}">길드마스터</td>
-                    <td th:text="${each.createdDate}">2022-01-01</td>
+                    <td th:text="${#temporals.format(each.createdDate, 'yyyy-MM-dd HH:mm:ss')}">2022-01-01</td>
                     <td>
                         <button th:if="${each.canChange}" class="btn btn-outline-danger">삭제</button>
                     </td>
@@ -181,8 +181,7 @@
                 <form th:action="@{/admin}" action="#" style="display: contents">
                     <div class="input-group" style="width: 26%">
                         <select class="form-select" name="category" id="category">
-                            <option value="name" th:selected="${param.category.contains('name')}">이름</option>
-                            <option value="role" th:selected="${param.category.contains('role')}">역할</option>
+                            <option value="name" th:selected="${param.category?.contains('name')}">이름</option>
                         </select>
                         <input type="text" class="form-control" style="width: 55%" name="keyword">
                         <button class="btn btn-outline-secondary">검색</button>

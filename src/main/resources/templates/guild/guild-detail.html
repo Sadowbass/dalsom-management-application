@@ -62,14 +62,39 @@
     </aside>
     <main class="text-center col-9 overflow-auto">
         <div class="p-5">
-
             <h1>
-                <span>달콤한 솜사탕</span>
-                <span class="text-muted figure-caption">60/60</span>
+                <span th:text="${guild.guildName}">달콤한 솜사탕</span>
+                <span class="text-muted figure-caption"
+                      th:text="${guild.characters.size()}+'/'+${guild.maxCapacity}">60/60</span>
             </h1>
             <hr>
             <div class="row">
-                <div class="card col-2 mb-3 ms-3 me-3">
+                <div class="card col-2 mb-3 ms-3 me-3" th:each="each : ${guild.characters}">
+                    <div class="card-body">
+                        <figure>
+                            <h5 class="card-title mb-0" th:text="${each.characterName}">
+                                Howler
+                            </h5>
+                            <figcaption class="figure-caption"
+                                        th:text="${each.mainCharacterName}">
+                                Howler
+                            </figcaption>
+                        </figure>
+                        <h6 class="card-subtitle text-muted mb-2">데빌헌터</h6>
+                        <p class="card-text">
+                            <span th:text="|아이템 레벨 : ${each.itemLevel}|">아이템 레벨 : 1595 </span>
+                            <span th:text="${each.guildRole.koreanName}">길드마스터</span>
+                        </p>
+                        <div class="d-flex">
+                            <a href="#" class="text-decoration-none m-1"
+                               th:href="@{'https://loawa.com/char/'+${each.characterName}}">캐릭터
+                                정보<br>(로아와)</a>
+                            <a href="#" class="text-decoration-none m-1"
+                               th:href="@{'/user/'+${each.userId}}">길드원 정보<br>정보 확인</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-2 mb-3 ms-3 me-3" th:remove="all">
                     <div class="card-body">
                         <figure>
                             <h5 class="card-title mb-0">
@@ -88,7 +113,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card col-2 mb-3 ms-3 me-3">
+                <div class="card col-2 mb-3 ms-3 me-3" th:remove="all">
                     <div class="card-body">
                         <figure>
                             <h5 class="card-title mb-0">
@@ -107,7 +132,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card col-2 mb-3 ms-3 me-3">
+                <div class="card col-2 mb-3 ms-3 me-3" th:remove="all">
                     <div class="card-body">
                         <figure>
                             <h5 class="card-title mb-0">
@@ -126,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card col-2 mb-3 ms-3 me-3">
+                <div class="card col-2 mb-3 ms-3 me-3" th:remove="all">
                     <div class="card-body">
                         <figure>
                             <h5 class="card-title mb-0">
@@ -145,7 +170,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card col-2 mb-3 ms-3 me-3">
+                <div class="card col-2 mb-3 ms-3 me-3" th:remove="all">
                     <div class="card-body">
                         <figure>
                             <h5 class="card-title mb-0">
@@ -164,7 +189,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card col-2 mb-3 ms-3 me-3">
+                <div class="card col-2 mb-3 ms-3 me-3" th:remove="all">
                     <div class="card-body">
                         <figure>
                             <h5 class="card-title mb-0">
@@ -183,7 +208,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card col-2 mb-3 ms-3 me-3">
+                <div class="card col-2 mb-3 ms-3 me-3" th:remove="all">
                     <div class="card-body">
                         <figure>
                             <h5 class="card-title mb-0">

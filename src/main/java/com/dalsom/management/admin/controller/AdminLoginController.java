@@ -1,10 +1,10 @@
 package com.dalsom.management.admin.controller;
 
 import com.dalsom.management.admin.Admin;
-import com.dalsom.management.admin.AdminRepository;
 import com.dalsom.management.admin.AdminService;
 import com.dalsom.management.admin.DuplicateAdminException;
 import com.dalsom.management.admin.dto.AdminForm;
+import com.dalsom.management.admin.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
@@ -14,10 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.ObjectUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
@@ -53,7 +55,8 @@ public class AdminLoginController {
     }
 
     @PostMapping("/login-failed")
-    public String loginFailed(@ModelAttribute("form") @Valid AdminForm form) {
+    public String loginFailed(@ModelAttribute("form") @Valid AdminForm form, BindingResult result, HttpServletRequest request) {
+        result.addError(new ObjectError("form", request.getAttribute("error").toString()));
         return "login-form";
     }
 

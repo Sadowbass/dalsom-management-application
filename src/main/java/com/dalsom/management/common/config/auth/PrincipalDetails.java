@@ -56,6 +56,6 @@ public class PrincipalDetails implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return admin.getStatus() == AdminStatus.APPROVED;
+        return admin.getRole() == AdminRole.DEVELOPER || admin.getStatus() == AdminStatus.APPROVED;
     }
 }

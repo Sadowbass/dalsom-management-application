@@ -13,6 +13,9 @@
             </div>
             <form action="/login" method="POST" class="row" id="loginForm" th:object="${form}">
                 <div>
+                    <div th:if="${#fields.hasGlobalErrors()}">
+                        <p class="form-error" th:each="each : ${#fields.globalErrors()}" th:text="${each}"></p>
+                    </div>
                     <div class="mb-2">
                         <label for="loginId" class="form-label">로그인 아이디</label>
                         <input type="text" th:errorclass="form-error" class="form-control" id="loginId" name="loginId" placeholder="아이디" th:value="*{loginId}">

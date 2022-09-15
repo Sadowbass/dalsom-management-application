@@ -1,11 +1,12 @@
 package com.dalsom.management.guild;
 
 import com.dalsom.management.admin.Admin;
-import com.dalsom.management.admin.AdminRepository;
+import com.dalsom.management.admin.repository.AdminRepository;
 import com.dalsom.management.character.CharacterData;
 import com.dalsom.management.character.CharacterRepository;
 import com.dalsom.management.character.Characters;
 import com.dalsom.management.character.Jobs;
+import com.dalsom.management.guild.repository.GuildRepository;
 import com.dalsom.management.user.User;
 import com.dalsom.management.user.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -90,5 +91,4 @@ class GuildRepositoryTest {
         userRepository.save(user);
         characterRepository.save(character);
     }
-
 }

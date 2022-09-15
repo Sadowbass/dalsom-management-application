@@ -1,7 +1,7 @@
 package com.dalsom.management.common.config.auth;
 
 import com.dalsom.management.admin.Admin;
-import com.dalsom.management.admin.AdminRepository;
+import com.dalsom.management.admin.repository.AdminRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

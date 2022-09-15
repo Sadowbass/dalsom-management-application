@@ -1,7 +1,7 @@
 package com.dalsom.management.character;
 
 import com.dalsom.management.admin.Admin;
-import com.dalsom.management.admin.AdminRepository;
+import com.dalsom.management.admin.repository.AdminRepository;
 import com.dalsom.management.user.User;
 import com.dalsom.management.user.UserRepository;
 import org.junit.jupiter.api.BeforeEach;

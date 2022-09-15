@@ -1,7 +1,7 @@
 package com.dalsom.management.admin.controller;
 
 import com.dalsom.management.admin.Admin;
-import com.dalsom.management.admin.AdminRepository;
+import com.dalsom.management.admin.repository.AdminRepository;
 import com.dalsom.management.admin.AdminService;
 import com.dalsom.management.admin.dto.AdminApprovalDto;
 import lombok.RequiredArgsConstructor;

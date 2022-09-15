@@ -1,6 +1,7 @@
 package com.dalsom.management.common.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.core.GrantedAuthorityDefaults;
@@ -19,17 +20,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable();
         httpSecurity.authorizeRequests()
-//                .antMatchers("/user/**").authenticated()
-//                .antMatchers("/manager/**").hasAnyRole("ROLE_ADMIN", "ROLE_MANAGER") hasRole, hasAnyRole의 경우 ROLE_이 들어가면 exception이 발생한다
-//                .antMatchers("/manager/**").access("hasRole('ADMIN') or hasRole('MASTER')")
-//                .antMatchers("/admin/**").access("hasRole('ADMIN')")q
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
                 .loginPage("/login").loginProcessingUrl("/login").usernameParameter("loginId")
                 .defaultSuccessUrl("/")
-                .failureForwardUrl("/login-failed")
-        ;
+                .failureHandler((request, response, exception) -> {
+                    if (exception instanceof DisabledException) {
+                        request.setAttribute("error", "아직 승인되지 않았습니다. 관리자, 개발자에게 문의하세요");
+                    }
+                    request.getRequestDispatcher("/login-failed").forward(request, response);
+                });
 
         return httpSecurity.build();
     }

@@ -1,4 +1,4 @@
-package com.dalsom.management.guild;
+package com.dalsom.management.guild.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;

@@ -27,13 +27,14 @@ public class Guilds extends BaseEntity {
 
     private int maxCapacity;
 
-    @ElementCollection(fetch = FetchType.LAZY)
+    @ElementCollection
     @CollectionTable(name = "guild_characters", joinColumns = {@JoinColumn(name = "guild_id")})
-    private List<GuildCharacters> guildCharacters = new ArrayList<>();
+    private List<GuildCharacters> guildCharacters;
 
     public Guilds(String guildName, int maxCapacity) {
         this.guildName = guildName;
         this.maxCapacity = maxCapacity;
+        this.guildCharacters = new ArrayList<>();
     }
 
     public List<GuildCharacters> getGuildCharacters() {

@@ -17,7 +17,10 @@
 </body>
 </html>
 
-<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:fragment="layoutWithScript(title, content, script)">
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      th:fragment="layoutWithScript(title, content, script)">
 <head th:replace="~{layoutTemplate/fragments/fragments :: head (${title}, _)}">
 </head>
 <body>

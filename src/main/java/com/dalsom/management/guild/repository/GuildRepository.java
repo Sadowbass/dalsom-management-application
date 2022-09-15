@@ -1,5 +1,6 @@
-package com.dalsom.management.guild;
+package com.dalsom.management.guild.repository;
 
+import com.dalsom.management.guild.Guilds;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

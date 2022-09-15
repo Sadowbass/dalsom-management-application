@@ -3,8 +3,10 @@ package com.dalsom.management.admin;
 import com.dalsom.management.admin.dto.AdminApprovalDto;
 import com.dalsom.management.admin.dto.AdminForm;
 import com.dalsom.management.admin.dto.AdminListDto;
+import com.dalsom.management.admin.repository.AdminRepository;
 import com.dalsom.management.common.PageObject;
 import com.dalsom.management.common.PageParameter;
+import com.dalsom.management.common.SearchCondition;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -36,10 +38,11 @@ public class AdminService {
         }
     }
 
-    public PageObject<AdminListDto> adminList(PageParameter pageParameter, AdminRole role) {
-        Page<Admin> adminPage = adminRepository.findAllByStatus(AdminStatus.APPROVED, pageParameter.toPageable());
-        Page<AdminListDto> dtoPage = adminPage.map(admin -> AdminListDto.convertAdminToDto(admin, role));
-        return new PageObject<>(dtoPage);
+    public PageObject<AdminListDto> adminList(PageParameter pageParameter, SearchCondition condition, AdminRole role) {
+        Page<AdminListDto> result = adminRepository.find(pageParameter.toPageable(), condition);
+        result.forEach(adminListDto -> adminListDto.setCanChange(role.canChangeTarget(adminListDto.getRole())));
+
+        return new PageObject<>(result);
     }
 
     public List<AdminApprovalDto> approvalList() {

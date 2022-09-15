@@ -13,7 +13,7 @@
 </head>
 
 <aside class="flex-shrink-0 p-3 align-items-center col-2 cotton-color sidebar" th:fragment="aside">
-    <a href="#" class="d-flex align-items-center pb-3 mb-3 text-decoration-none border-bottom">
+    <a href="#" th:href="@{/guild}" class="d-flex align-items-center pb-3 mb-3 text-decoration-none border-bottom">
         <span class="fs-5 fw-semibold text-black">관리자 메인</span>
     </a>
     <ul class="list-unstyled ps-0">
@@ -24,7 +24,7 @@
             <div class="collapse" id="guild-collapse">
                 <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
                     <li>
-                        <a href="#" class="link-dark rounded">길드현황</a>
+                        <a href="#" th:href="@{/guild}" class="link-dark rounded">길드현황</a>
                     </li>
                     <li>
                         <a href="#" class="link-dark rounded">건의사항</a>
@@ -39,7 +39,7 @@
             <div class="collapse" id="user-collapse">
                 <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
                     <li>
-                        <a href="" class="link-dark rounded">회원가입</a>
+                        <a href="#" class="link-dark rounded">회원가입</a>
                     </li>
                     <li>
                         <a href="#" class="link-dark rounded">회원목록</a>
@@ -54,10 +54,10 @@
             <div class="collapse" id="admin-collapse">
                 <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
                     <li>
-                        <a href="#" class="link-dark rounded">운영진목록</a>
+                        <a href="#" th:href="@{/admin}" class="link-dark rounded">운영진목록</a>
                     </li>
                     <li>
-                        <a href="#" class="link-dark rounded">운영진가입승인</a>
+                        <a href="#" th:href="@{/admin/approval}" class="link-dark rounded">운영진가입승인</a>
                     </li>
                 </ul>
             </div>

@@ -1,8 +1,8 @@
 package com.dalsom.management.user;
 
 import com.dalsom.management.admin.Admin;
-import com.dalsom.management.common.entity.BaseEntity;
 import com.dalsom.management.character.Characters;
+import com.dalsom.management.common.entity.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
@@ -10,6 +10,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -63,8 +64,8 @@ public class User extends BaseEntity {
         return user;
     }
 
-    public void addCharacter(Characters character) {
-        this.characters.add(character);
+    public void addCharacters(Characters... characters) {
+        this.characters.addAll(Arrays.asList(characters));
     }
 
     public void changeMainCharacter(Characters characters) {

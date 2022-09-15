@@ -11,8 +11,8 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SearchCondition {
 
-    private String keyword;
     private String category;
+    private String keyword;
 
     @Override
     public String toString() {

@@ -76,25 +76,31 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr th:each="each : ${guilds}" th:onclick="|location.href='/guild/${each.id}'|">
+                    <td th:text="${eachStat.count}">1</td>
+                    <td th:text="${each.guildName}">달콤한솜사탕</td>
+                    <td th:text="${each.guildMaster}">Howler</td>
+                    <td th:text="${each.numberOfMembers}+'/'+${each.maxCapacity}">60/60</td>
+                </tr>
+                <tr th:remove="all">
                     <td>1</td>
                     <td>달콤한솜사탕</td>
                     <td>Howler</td>
                     <td>60/60</td>
                 </tr>
-                <tr>
+                <tr th:remove="all">
                     <td>2</td>
                     <td>새콤한솜사탕</td>
                     <td>기챰</td>
                     <td>40/40</td>
                 </tr>
-                <tr>
+                <tr th:remove="all">
                     <td>3</td>
                     <td>매콤한솜사탕</td>
                     <td>휄린</td>
                     <td>38/40</td>
                 </tr>
-                <tr>
+                <tr th:remove="all">
                     <td>4</td>
                     <td>상콤한솜사탕</td>
                     <td>누군가</td>
