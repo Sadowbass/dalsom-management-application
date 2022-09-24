@@ -2,6 +2,7 @@ package com.dalsom.management.common.config;
 
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -31,6 +32,8 @@ public class SecurityConfig {
                 .failureHandler((request, response, exception) -> {
                     if (exception instanceof DisabledException) {
                         request.setAttribute("error", "아직 승인되지 않았습니다. 관리자, 개발자에게 문의하세요");
+                    } else if (exception instanceof BadCredentialsException) {
+                        request.setAttribute("error", "ID 혹은 PW가 틀립니다");
                     }
                     request.getRequestDispatcher("/login-failed").forward(request, response);
                 });

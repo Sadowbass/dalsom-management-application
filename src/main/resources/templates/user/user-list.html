@@ -76,7 +76,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="each : ${page.content}">
+                <tr th:each="each : ${page.content}" th:onclick="|location.href='/user/${each.userId}'|">
                     <td th:text="${page.currentPageNumber * 10 - 10 + eachStat.count}">1</td>
                     <td th:text="${each.mainCharacterName}">Howler</td>
                     <td th:text="${each.guildRole.koreanName}">길드마스터</td>
