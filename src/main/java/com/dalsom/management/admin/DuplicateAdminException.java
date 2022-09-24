@@ -1,4 +1,8 @@
 package com.dalsom.management.admin;
 
-public class DuplicateAdminException extends RuntimeException {
+import com.dalsom.management.common.DuplicateMemberException;
+
+public class DuplicateAdminException extends DuplicateMemberException {
+
+
 }

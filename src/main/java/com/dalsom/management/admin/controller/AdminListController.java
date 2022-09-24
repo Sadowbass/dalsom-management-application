@@ -1,6 +1,5 @@
 package com.dalsom.management.admin.controller;
 
-import com.dalsom.management.admin.AdminRole;
 import com.dalsom.management.admin.AdminService;
 import com.dalsom.management.common.PageParameter;
 import com.dalsom.management.common.SearchCondition;
@@ -30,11 +29,7 @@ public class AdminListController {
             if (principal instanceof PrincipalDetails) {
                 PrincipalDetails principalDetails = (PrincipalDetails) principal;
                 model.addAttribute("page", adminService.adminList(pageParameter, condition, principalDetails.getRole()));
-            } else {
-                model.addAttribute("page", adminService.adminList(pageParameter, condition, AdminRole.UNKNOWN));
             }
-        } else {
-            model.addAttribute("page", adminService.adminList(pageParameter, condition, AdminRole.UNKNOWN));
         }
 
         return "admin/admin-list";

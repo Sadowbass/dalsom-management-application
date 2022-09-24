@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layoutTemplate/fragments/fragments :: head (~{::title}, ~{::link})">
+<head th:replace="layoutTemplate/fragments/fragments :: head (~{::title}, _)">
     <title>관리자 로그인</title>
-    <link th:href="@{/css/form-css.css}" href="/static/css/form-css.css" rel="stylesheet" type="text/css">
 </head>
 <body class="cotton-color">
 <div class="container">
@@ -18,12 +17,14 @@
                     </div>
                     <div class="mb-2">
                         <label for="loginId" class="form-label">로그인 아이디</label>
-                        <input type="text" th:errorclass="form-error" class="form-control" id="loginId" name="loginId" placeholder="아이디" th:value="*{loginId}">
+                        <input type="text" th:errorclass="form-error" class="form-control" id="loginId" name="loginId"
+                               placeholder="아이디" th:value="*{loginId}">
                         <span class="form-error" th:errors="*{loginId}">아이디는 필수입니다</span>
                     </div>
                     <div class="mb-2">
                         <label for="password" class="form-label">비밀번호</label>
-                        <input type="password" th:errorclass="form-error" class="form-control" id="password" name="password" placeholder="비밀번호">
+                        <input type="password" th:errorclass="form-error" class="form-control" id="password"
+                               name="password" placeholder="비밀번호">
                         <span class="form-error" th:errors="*{password}">비밀번호는 필수입니다</span>
                     </div>
                 </div>

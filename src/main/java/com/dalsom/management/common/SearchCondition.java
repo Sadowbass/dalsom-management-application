@@ -11,15 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class SearchCondition {
 
-    private String category;
-    private String keyword;
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("SearchCondition{");
-        sb.append("keyword='").append(keyword).append('\'');
-        sb.append(", category='").append(category).append('\'');
-        sb.append('}');
-        return sb.toString();
-    }
+    private String category = "";
+    private String keyword = "";
 }

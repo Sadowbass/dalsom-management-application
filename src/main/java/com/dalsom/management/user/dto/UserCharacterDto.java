@@ -1,4 +1,4 @@
-package com.dalsom.management.user;
+package com.dalsom.management.user.dto;
 
 import com.dalsom.management.character.Jobs;
 import com.querydsl.core.annotations.QueryProjection;

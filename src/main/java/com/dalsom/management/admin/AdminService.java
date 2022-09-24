@@ -24,7 +24,7 @@ public class AdminService {
     }
 
     public Long join(AdminForm form) {
-        validDuplicateAdmin(form.getLoginId());
+        checkDuplicateAdmin(form.getLoginId());
 
         Admin admin = Admin.createNewAdmin(form.getLoginId(), form.getPassword(), form.getName());
         adminRepository.save(admin);
@@ -32,14 +32,14 @@ public class AdminService {
         return admin.getId();
     }
 
-    private void validDuplicateAdmin(String loginId) {
+    private void checkDuplicateAdmin(String loginId) {
         if (adminRepository.findByLoginId(loginId).isPresent()) {
             throw new DuplicateAdminException();
         }
     }
 
     public PageObject<AdminListDto> adminList(PageParameter pageParameter, SearchCondition condition, AdminRole role) {
-        Page<AdminListDto> result = adminRepository.find(pageParameter.toPageable(), condition);
+        Page<AdminListDto> result = adminRepository.findAdminListDtoPage(pageParameter.toPageable(), condition);
         result.forEach(adminListDto -> adminListDto.setCanChange(role.canChangeTarget(adminListDto.getRole())));
 
         return new PageObject<>(result);

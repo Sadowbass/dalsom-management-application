@@ -1,13 +1,22 @@
 package com.dalsom.management.user.repository;
 
 import com.dalsom.management.character.QCharacters;
-import com.dalsom.management.user.QUserCharacterDto;
-import com.dalsom.management.user.UserDetailDto;
+import com.dalsom.management.common.SearchCondition;
+import com.dalsom.management.guild.GuildRole;
+import com.dalsom.management.user.dto.QUserCharacterDto;
+import com.dalsom.management.user.dto.QUserListDto;
+import com.dalsom.management.user.dto.UserDetailDto;
+import com.dalsom.management.user.dto.UserListDto;
+import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.Projections;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.util.ObjectUtils;
 
 import javax.persistence.EntityManager;
-
 import java.util.List;
 
 import static com.dalsom.management.character.QCharacters.characters;
@@ -19,14 +28,43 @@ import static com.querydsl.core.group.GroupBy.list;
 
 public class UserRepositoryImpl implements UserRepositoryCustom {
 
-    private final EntityManager em;
     private final JPAQueryFactory queryFactory;
 
     public UserRepositoryImpl(EntityManager em) {
-        this.em = em;
         this.queryFactory = new JPAQueryFactory(em);
     }
 
+    @Override
+    public Page<UserListDto> findUserListDtoPage(Pageable pageParameter, SearchCondition searchCondition) {
+        QueryResults<UserListDto> userResult = queryFactory
+                .select(new QUserListDto(
+                        user.id,
+                        characters.characterData.characterName,
+                        guildCharacters.role
+                ))
+                .from(user)
+                .join(user.mainCharacter, characters)
+                .join(guilds)
+                .on(guilds.guildName.eq("달콤한 솜사탕"))
+                .join(guilds.guildCharacters, guildCharacters)
+                .on(guildCharacters.character.id.eq(characters.id))
+                .where(createWhereCondition(searchCondition))
+                .offset(pageParameter.getOffset())
+                .limit(pageParameter.getPageSize())
+                .fetchResults();
+
+        return new PageImpl<>(userResult.getResults(), pageParameter, userResult.getTotal());
+    }
+
+    private BooleanExpression createWhereCondition(SearchCondition searchCondition) {
+        if (ObjectUtils.isEmpty(searchCondition.getCategory()) || searchCondition.getCategory().equals("name")) {
+            return user.mainCharacter.characterData.characterName.containsIgnoreCase(searchCondition.getKeyword());
+        } else {
+            return guildCharacters.role.eq(GuildRole.valueOf(searchCondition.getKeyword()));
+        }
+    }
+
+    @Override
     public List<UserDetailDto> findUserDetailById(Long id) {
         QCharacters mainCharacter = new QCharacters("mainCharacter");
 

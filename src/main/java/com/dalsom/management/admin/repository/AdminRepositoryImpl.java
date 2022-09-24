@@ -29,7 +29,7 @@ public class AdminRepositoryImpl implements AdminRepositoryCustom {
     }
 
     @Override
-    public Page<AdminListDto> find(Pageable pageParameter, SearchCondition condition) {
+    public Page<AdminListDto> findAdminListDtoPage(Pageable pageParameter, SearchCondition condition) {
         // 복잡한 쿼리등에서 정상작동을 하지 않아 별도로 자바단에서 count 쿼리를 날리도록 deprecate되었지만
         // 여기에서는 복잡한 쿼리가 아님으로 fetchResult를 이용함
         QueryResults<AdminListDto> results = queryFactory

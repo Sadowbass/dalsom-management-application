@@ -19,20 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 @AllArgsConstructor
 public class PageParameter {
 
-    private int pageNumber = 1;
-    private int pageSize = 10;
+    private int pageNumber;
+    private int pageSize;
 
     public Pageable toPageable() {
         return PageRequest.of(pageNumber - 1, pageSize);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("PageParameter{");
-        sb.append("pageNumber=").append(pageNumber);
-        sb.append(", pageSize=").append(pageSize);
-        sb.append('}');
-        return sb.toString();
     }
 
     public static class PageParameterArgumentResolver implements HandlerMethodArgumentResolver {

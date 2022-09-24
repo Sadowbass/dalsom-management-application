@@ -1,5 +1,6 @@
-package com.dalsom.management.user;
+package com.dalsom.management.user.dto;
 
+import com.dalsom.management.user.UserStatus;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,18 +31,5 @@ public class UserDetailDto {
         this.userStatus = userStatus;
         this.leaveReason = leaveReason;
         this.characters = characters;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("UserDetailDto{");
-        sb.append("userId=").append(userId);
-        sb.append(", mainCharacterName='").append(mainCharacterName).append('\'');
-        sb.append(", joinDate=").append(joinDate);
-        sb.append(", userStatus=").append(userStatus);
-        sb.append(", leaveReason='").append(leaveReason).append('\'');
-        sb.append(", characters=").append(characters);
-        sb.append('}');
-        return sb.toString();
     }
 }

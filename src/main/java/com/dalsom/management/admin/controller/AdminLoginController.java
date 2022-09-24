@@ -4,9 +4,7 @@ import com.dalsom.management.admin.Admin;
 import com.dalsom.management.admin.AdminService;
 import com.dalsom.management.admin.DuplicateAdminException;
 import com.dalsom.management.admin.dto.AdminForm;
-import com.dalsom.management.admin.repository.AdminRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,13 +22,10 @@ import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
-@Slf4j
 public class AdminLoginController {
 
-    private final AdminRepository adminRepository;
     private final AdminService adminService;
 
-    //@ModelAttribute는 없어도 되지만 intellij thymeleaf 지원과 이름 간소화를 위해 사용
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("form") AdminForm form) {
         if (isAlreadyLoggedIn()) {
@@ -56,7 +51,10 @@ public class AdminLoginController {
 
     @PostMapping("/login-failed")
     public String loginFailed(@ModelAttribute("form") @Valid AdminForm form, BindingResult result, HttpServletRequest request) {
-        result.addError(new ObjectError("form", request.getAttribute("error").toString()));
+        Object error = request.getAttribute("error");
+        if (!ObjectUtils.isEmpty(error)) {
+            result.addError(new ObjectError("form", error.toString()));
+        }
         return "login-form";
     }
 
