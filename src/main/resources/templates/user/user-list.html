@@ -11,55 +11,6 @@
 </head>
 <body>
 <div class="container-fluid wrapper row">
-    <aside class="flex-shrink-0 p-4 align-items-center cotton-color col-2 sidebar">
-        <a href="#" class="d-flex align-items-center pb-3 mb-3 text-decoration-none border-bottom">
-            <span class="fs-5 fw-semibold text-black">관리자 메인</span>
-        </a>
-        <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
-                        data-bs-target="#guild-collapse" aria-expanded="true">길드관리
-                </button>
-                <div class="collapse" id="guild-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
-                        <li>
-                            <a href="#" class="link-dark rounded">길드현황</a>
-                        </li>
-                        <li>
-                            <a href="#" class="link-dark rounded">건의사항</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
-                        data-bs-target="#user-collapse" aria-expanded="true">회원관리
-                </button>
-                <div class="collapse" id="user-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
-                        <li>
-                            <a href="#" class="link-dark rounded">회원목록</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
-                        data-bs-target="#admin-collapse" aria-expanded="true">운영진관리
-                </button>
-                <div class="collapse" id="admin-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
-                        <li>
-                            <a href="#" class="link-dark rounded">운영진목록</a>
-                        </li>
-                        <li>
-                            <a href="#" class="link-dark rounded">운영진가입승인</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </aside>
     <main class="text-center col-9 overflow-auto">
         <div class="p-5">
             <h1>
@@ -80,30 +31,6 @@
                     <td th:text="${page.currentPageNumber * 10 - 10 + eachStat.count}">1</td>
                     <td th:text="${each.mainCharacterName}">Howler</td>
                     <td th:text="${each.guildRole.koreanName}">길드마스터</td>
-                    <td>0</td>
-                </tr>
-                <tr th:remove="all">
-                    <td>1</td>
-                    <td>Howler</td>
-                    <td>길드마스터</td>
-                    <td>0</td>
-                </tr>
-                <tr th:remove="all">
-                    <td>2</td>
-                    <td>휄아</td>
-                    <td>운영진</td>
-                    <td>0</td>
-                </tr>
-                <tr th:remove="all">
-                    <td>3</td>
-                    <td>챠힘</td>
-                    <td>운영진</td>
-                    <td>0</td>
-                </tr>
-                <tr th:remove="all">
-                    <td>4</td>
-                    <td>개발하다샷건침</td>
-                    <td>운영진</td>
                     <td>0</td>
                 </tr>
                 </tbody>

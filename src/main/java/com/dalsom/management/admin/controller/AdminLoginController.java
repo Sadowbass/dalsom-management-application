@@ -55,6 +55,7 @@ public class AdminLoginController {
         if (!ObjectUtils.isEmpty(error)) {
             result.addError(new ObjectError("form", error.toString()));
         }
+
         return "login-form";
     }
 

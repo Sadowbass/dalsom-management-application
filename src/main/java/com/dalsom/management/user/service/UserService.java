@@ -1,4 +1,4 @@
-package com.dalsom.management.user;
+package com.dalsom.management.user.service;
 
 import com.dalsom.management.common.PageObject;
 import com.dalsom.management.common.PageParameter;

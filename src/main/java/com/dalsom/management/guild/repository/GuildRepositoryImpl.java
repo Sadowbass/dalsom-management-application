@@ -2,6 +2,7 @@ package com.dalsom.management.guild.repository;
 
 import com.dalsom.management.character.QCharacters;
 import com.dalsom.management.guild.GuildRole;
+import com.dalsom.management.guild.Guilds;
 import com.dalsom.management.guild.dto.GuildDetailDto;
 import com.dalsom.management.guild.dto.GuildListDto;
 import com.dalsom.management.guild.dto.QGuildCharactersDto;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Map;
 
 import static com.dalsom.management.character.QCharacters.characters;
 import static com.dalsom.management.guild.QGuildCharacters.guildCharacters;
@@ -67,6 +69,7 @@ public class GuildRepositoryImpl implements GuildRepositoryCustom {
                                                         user.id.as("userId"),
                                                         user.mainCharacter.characterData.characterName.as("mainCharacterName"),
                                                         characters.characterData.characterName,
+                                                        characters.characterData.job,
                                                         guildCharacters.role.as("guildRole"),
                                                         characters.characterData.level,
                                                         characters.characterData.itemLevel
@@ -75,5 +78,13 @@ public class GuildRepositoryImpl implements GuildRepositoryCustom {
                                 )
                         )
                 );
+    }
+
+    @Override
+    public Map<String, Guilds> findAllByGuildName(List<String> guildNames) {
+        return queryFactory
+                .from(guilds)
+                .where(guilds.guildName.in(guildNames))
+                .transform(groupBy(guilds.guildName).as(guilds));
     }
 }

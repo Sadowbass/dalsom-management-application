@@ -1,5 +1,6 @@
 package com.dalsom.management.user.dto;
 
+import com.dalsom.management.character.Jobs;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,10 @@ public class UserJoinForm {
 
     @NotNull(message = "아이템 레벨은 필수입니다.")
     private Integer itemLevel;
+
+    public Jobs getJob() {
+        return Jobs.findJob(this.job);
+    }
 
     @Override
     public String toString() {

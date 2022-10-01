@@ -9,7 +9,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-@Slf4j
 public class PrincipalDetailsService implements UserDetailsService {
 
     private final AdminRepository adminRepository;

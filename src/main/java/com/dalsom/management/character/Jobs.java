@@ -6,8 +6,17 @@ public enum Jobs {
     데빌헌터, 블래스터, 호크아이, 스카우터, 건슬링어,
     바드, 서머너, 아르카나, 소서리스,
     블레이드, 데모닉, 리퍼,
-    도화가, 기상술사;
+    도화가, 기상술사,
+    확인불가;
 
     Jobs() {
+    }
+
+    public static Jobs findJob(String jobName) {
+        try {
+            return Jobs.valueOf(jobName);
+        } catch (IllegalArgumentException e) {
+            return Jobs.확인불가;
+        }
     }
 }

@@ -11,52 +11,6 @@
 </head>
 <body>
 <div class="container-fluid wrapper row">
-    <aside class="flex-shrink-0 p-4 align-items-center cotton-color col-2">
-        <a href="#" class="d-flex align-items-center pb-3 mb-3 text-decoration-none border-bottom">
-            <span class="fs-5 fw-semibold text-black">관리자 메인</span>
-        </a>
-        <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
-                        data-bs-target="#guild-collapse" aria-expanded="true">길드관리
-                </button>
-                <div class="collapse" id="guild-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
-                        <li>
-                            <a href="#" class="link-dark rounded">길드현황</a>
-                        </li>
-                        <li>
-                            <a href="#" class="link-dark rounded">건의사항</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
-                        data-bs-target="#user-collapse" aria-expanded="true">회원관리
-                </button>
-                <div class="collapse" id="user-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
-                        <li>
-                            <a href="#" class="link-dark rounded">회원목록</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
-                        data-bs-target="#admin-collapse" aria-expanded="true">운영진관리
-                </button>
-                <div class="collapse" id="admin-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
-                        <li>
-                            <a href="#" class="link-dark rounded">운영진목록</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </aside>
     <main class="text-center col-9 overflow-auto">
         <div class="p-5">
             <h1 class="">
@@ -89,26 +43,6 @@
                         </button>
                     </td>
                 </tr>
-                <tr th:remove="all">
-                    <td>11</td>
-                    <td>o현석</td>
-                    <td>test_id1</td>
-                    <td>2022-01-01</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary m-1">승인</button>
-                        <button class="btn btn-sm btn-danger">거절</button>
-                    </td>
-                </tr>
-                <tr th:remove="all">
-                    <td>12</td>
-                    <td>개발하다샷건침</td>
-                    <td>test_id2</td>
-                    <td>2022-01-01</td>
-                    <td>
-                        <button class="btn btn-sm btn-primary m-1">승인</button>
-                        <button class="btn btn-sm btn-danger">거절</button>
-                    </td>
-                </tr>
                 </tbody>
             </table>
 
@@ -124,7 +58,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
 </div>

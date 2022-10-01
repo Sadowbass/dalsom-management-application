@@ -8,6 +8,8 @@ import com.dalsom.management.user.dto.UserDetailDto;
 import com.dalsom.management.user.dto.UserJoinForm;
 import com.dalsom.management.user.dto.UserListDto;
 import com.dalsom.management.user.repository.UserRepository;
+import com.dalsom.management.user.service.UserJoinService;
+import com.dalsom.management.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/user")
@@ -40,7 +43,7 @@ public class UserController {
     }
 
     @PostMapping("join")
-    public String join(@ModelAttribute("form") @Valid UserJoinForm form, BindingResult result, Model model) {
+    public String join(@ModelAttribute("form") @Valid UserJoinForm form, BindingResult result, Model model) throws IOException {
         if (result.hasErrors()) {
             return "user/user-join";
         }

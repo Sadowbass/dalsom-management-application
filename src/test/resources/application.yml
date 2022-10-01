@@ -14,4 +14,7 @@ spring:
   h2:
     console:
       enabled: false
-
+logging:
+  level:
+    com.dalsom.management: debug
+    p6spy: off

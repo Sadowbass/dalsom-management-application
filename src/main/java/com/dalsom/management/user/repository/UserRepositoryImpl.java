@@ -45,7 +45,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
                 .from(user)
                 .join(user.mainCharacter, characters)
                 .join(guilds)
-                .on(guilds.guildName.eq("달콤한 솜사탕"))
+                .on(guilds.guildName.eq("달콤한솜사탕"))
                 .join(guilds.guildCharacters, guildCharacters)
                 .on(guildCharacters.character.id.eq(characters.id))
                 .where(createWhereCondition(searchCondition))
@@ -71,7 +71,7 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
         return queryFactory
                 .from(guilds)
                 .join(guilds.guildCharacters, guildCharacters)
-                .join(guildCharacters.character, characters)
+                .rightJoin(guildCharacters.character, characters)
                 .join(characters.user, user)
                 .join(user.mainCharacter, mainCharacter)
                 .where(user.id.eq(id))

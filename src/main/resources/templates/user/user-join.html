@@ -6,58 +6,6 @@
 </head>
 <body>
 <div class="container-fluid wrapper row">
-    <aside class="flex-shrink-0 p-4 align-items-center cotton-color col-2 sidebar">
-        <a href="#" class="d-flex align-items-center pb-3 mb-3 text-decoration-none border-bottom">
-            <span class="fs-5 fw-semibold text-black">관리자 메인</span>
-        </a>
-        <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
-                        data-bs-target="#guild-collapse" aria-expanded="true">길드관리
-                </button>
-                <div class="collapse" id="guild-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
-                        <li>
-                            <a href="#" class="link-dark rounded">길드현황</a>
-                        </li>
-                        <li>
-                            <a href="#" class="link-dark rounded">건의사항</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
-                        data-bs-target="#user-collapse" aria-expanded="true">회원관리
-                </button>
-                <div class="collapse" id="user-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
-                        <li>
-                            <a href="#" class="link-dark rounded">회원가입</a>
-                        </li>
-                        <li>
-                            <a href="#" class="link-dark rounded">회원목록</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="mb-1">
-                <button class="btn align-items-center rounded btn-toggle" data-bs-toggle="collapse"
-                        data-bs-target="#admin-collapse" aria-expanded="true">운영진관리
-                </button>
-                <div class="collapse" id="admin-collapse">
-                    <ul class="list-unstyled fw-normal pb-1 small btn-toggle-nav">
-                        <li>
-                            <a href="#" class="link-dark rounded">운영진목록</a>
-                        </li>
-                        <li>
-                            <a href="#" class="link-dark rounded">운영진가입승인</a>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-        </ul>
-    </aside>
     <main class="text-center col-10 overflow-auto">
         <div class="row p-5">
             <form action="#" th:action="@{/user/join}" method="post" class="row mb-5" id="form" th:object="${form}">
@@ -71,8 +19,10 @@
                                    th:value="*{characterName}">
                         </div>
                         <div>
-                            <button class="btn btn-primary me-1" style="display: none">캐릭터 조회</button>
-                            <button class="btn btn-primary" style="display: none">수기 입력</button>
+                            <button type="button" class="btn btn-primary me-1" id="searchAutoBtn">캐릭터 조회
+                            </button>
+                            <div class="spinner-border" id="spinner" role="status" style="display: none">
+                            </div>
                         </div>
                     </div>
                     <label for="joinDate">가입일</label>
@@ -103,8 +53,8 @@
                         </div>
                     </div>
                 </div>
-            <p class="form-error" th:if="${#fields.hasAnyErrors()}" th:each="each : ${#fields.allErrors()}"
-               th:text="${each}"></p>
+                <p class="form-error" th:if="${#fields.hasAnyErrors()}" th:each="each : ${#fields.allErrors()}"
+                   th:text="${each}"></p>
             </form>
             <button class="btn btn-primary" form="form"
                     style="width: 30%; height: 4rem; margin: auto">가입
@@ -113,9 +63,74 @@
     </main>
 </div>
 <script>
+    let characterNameInput = document.getElementById("characterName");
+
     document.addEventListener("DOMContentLoaded", function () {
         setDateValue(document);
+        addSearchBtnEventListener();
+        document.querySelectorAll("input").forEach((each) => {
+            each.addEventListener("keypress", removeEnterEvent)
+            each.addEventListener("keydown", removeEnterEvent)
+            each.addEventListener("keyup", removeEnterEvent)
+        })
+        characterNameInput.addEventListener("keyup", function (ev) {
+            if (ev.key === 'Enter') {
+                document.getElementById("searchAutoBtn").click();
+            }
+        });
     })
+
+    function removeEnterEvent(ev) {
+        if (ev.key === 'Enter') {
+            ev.preventDefault();
+        }
+    }
+
+    function addSearchBtnEventListener() {
+        document.getElementById("searchAutoBtn").addEventListener("click", function () {
+            if (characterNameInput.value.length === 0) {
+                alert("캐릭터명을 입력해주세요");
+                return;
+            }
+            let httpRequest = new XMLHttpRequest();
+
+            let searchBtn = document.getElementById("searchAutoBtn");
+            let spinner = document.getElementById("spinner")
+
+            httpRequest.onreadystatechange = function () {
+                if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                    let response = JSON.parse(httpRequest.responseText);
+                    let job = document.getElementById("job");
+                    let level = document.getElementById("level");
+                    let itemLevel = document.getElementById("itemLevel");
+
+                    if (httpRequest.status === 200) {
+                        job.value = response["job"];
+                        level.value = response["combatLevel"];
+                        itemLevel.value = response["itemLevel"];
+                    } else {
+                        let response = JSON.parse(httpRequest.responseText);
+                        console.log(httpRequest.status);
+                        console.log(response);
+
+                        job.value = '';
+                        level.value = '';
+                        itemLevel.value = '';
+                        alert(response["rspMessage"]);
+                    }
+                    searchBtn.style = "display: inline-block";
+                    spinner.style = "display: none";
+                } else {
+                }
+            }
+
+            searchBtn.style = "display: none";
+            spinner.style = "display: inline-block";
+
+            httpRequest.open("GET", `/api/character/${characterNameInput.value}`, true);
+            httpRequest.send(null);
+        })
+    }
 </script>
 </body>
 </html>
