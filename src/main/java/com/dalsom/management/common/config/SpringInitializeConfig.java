@@ -2,7 +2,6 @@ package com.dalsom.management.common.config;
 
 import com.dalsom.management.common.PageParameter;
 import com.dalsom.management.common.PasswordEncoderFactory;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
@@ -12,7 +11,6 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Configuration
-@Slf4j
 public class SpringInitializeConfig implements WebMvcConfigurer {
 
     private final PasswordEncoder encoder;
@@ -28,9 +26,6 @@ public class SpringInitializeConfig implements WebMvcConfigurer {
 
     @PostConstruct
     public void init() {
-        log.debug("=============================");
-        log.debug("spring post initialize start");
         PasswordEncoderFactory.addEncoder(PasswordEncoderFactory.DEFAULT_ENCODER_NAME, encoder);
-        log.debug("=============================");
     }
 }

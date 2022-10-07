@@ -1,15 +1,18 @@
 package com.dalsom.management.guild;
 
+import com.dalsom.management.guild.dto.GuildCharactersDto;
 import com.dalsom.management.guild.dto.GuildDetailDto;
 import com.dalsom.management.guild.dto.GuildListDto;
 import com.dalsom.management.guild.repository.GuildRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -33,7 +36,16 @@ public class GuildController {
             throw new RuntimeException("no guild found");
         }
 
-        model.addAttribute("guild", guildDetailDtos.get(0));
+        GuildDetailDto foundGuild = guildDetailDtos.get(0);
+        if (foundGuild.getCharacters().size() == 1) {
+            List<GuildCharactersDto> characters = foundGuild.getCharacters();
+            GuildCharactersDto firstCharacter = characters.get(0);
+            if (ObjectUtils.isEmpty(firstCharacter.getUserId())) {
+                foundGuild.setCharacters(new ArrayList<>());
+            }
+        }
+
+        model.addAttribute("guild", foundGuild);
 
         return "guild/guild-detail";
     }

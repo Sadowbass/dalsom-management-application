@@ -42,9 +42,9 @@ public class GuildRepositoryImpl implements GuildRepositoryCustom {
                         guildCharacters.character.characterData.characterName.as("guildMaster")
                 ))
                 .from(guilds)
-                .join(guilds.guildCharacters, guildCharacters)
-                .join(guildCharacters.character, characters)
-                .where(guildCharacters.role.eq(GuildRole.MASTER))
+                .leftJoin(guilds.guildCharacters, guildCharacters)
+                .on(guildCharacters.role.eq(GuildRole.MASTER))
+                .leftJoin(guildCharacters.character, characters)
                 .fetch();
     }
 
@@ -53,10 +53,10 @@ public class GuildRepositoryImpl implements GuildRepositoryCustom {
         QCharacters mainCharacter = new QCharacters("mainCharacter");
         return queryFactory
                 .from(guilds)
-                .join(guilds.guildCharacters, guildCharacters)
-                .join(guildCharacters.character, characters)
-                .join(characters.user, user)
-                .join(user.mainCharacter, mainCharacter)
+                .leftJoin(guilds.guildCharacters, guildCharacters)
+                .leftJoin(guildCharacters.character, characters)
+                .leftJoin(characters.user, user)
+                .leftJoin(user.mainCharacter, mainCharacter)
                 .where(guilds.id.eq(id))
                 .transform(
                         groupBy(guilds.guildName).list(

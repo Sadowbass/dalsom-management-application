@@ -1,5 +1,7 @@
 package com.dalsom.management.character;
 
+import org.springframework.util.ObjectUtils;
+
 public enum Jobs {
     디스트로이어, 워로드, 버서커, 홀리나이트,
     배틀마스터, 인파이터, 기공사, 창술사, 스트라이커,
@@ -13,6 +15,10 @@ public enum Jobs {
     }
 
     public static Jobs findJob(String jobName) {
+        if (ObjectUtils.isEmpty(jobName)) {
+            return Jobs.확인불가;
+        }
+        
         try {
             return Jobs.valueOf(jobName);
         } catch (IllegalArgumentException e) {

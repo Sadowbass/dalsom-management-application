@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class UserPageController {
+public class UserQueryController {
 
     private final UserRepository userRepository;
     private final UserService userService;

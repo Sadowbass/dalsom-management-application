@@ -1,14 +1,13 @@
 spring:
   jpa:
     hibernate:
-#      ddl-auto: create
+    #      ddl-auto: create
     properties:
       hibernate:
         show_sql: true
         format_sql: true
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
-  #      database: h2
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     username: dalsom

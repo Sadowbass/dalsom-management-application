@@ -35,7 +35,7 @@
                         <div class="mb-4">
                             <label for="job">직업</label>
                             <input type="text" class="form-control" id="job" name="job" list="jop-options"
-                                   th:value="*{job}">
+                                   th:value="*{job.name()} eq '확인불가'? '' : *{job}">
                             <datalist id="jop-options">
                                 <option th:each="each : ${T(com.dalsom.management.character.Jobs).values()}"
                                         th:text="${each.name()}" th:value="${each.name()}"></option>

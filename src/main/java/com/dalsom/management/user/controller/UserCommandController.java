@@ -1,4 +1,4 @@
-package com.dalsom.management.user;
+package com.dalsom.management.user.controller;
 
 import com.dalsom.management.common.DuplicateMemberException;
 import com.dalsom.management.user.dto.UserJoinForm;
@@ -18,7 +18,7 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
-public class UserController {
+public class UserCommandController {
 
     private final UserJoinService userJoinService;
 
