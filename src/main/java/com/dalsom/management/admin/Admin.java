@@ -15,7 +15,7 @@ public class Admin extends BaseEntity {
 
     @Id
     @GeneratedValue
-    @Column(name = "adminId")
+    @Column(name = "admin_id")
     private Long id;
 
     @Column(unique = true)
@@ -46,8 +46,8 @@ public class Admin extends BaseEntity {
 
     public static boolean isCorrectAdminRole(String role) {
         try {
-            AdminRole.valueOf(role);
-            return true;
+            AdminRole adminRole = AdminRole.valueOf(role);
+            return adminRole != AdminRole.UNKNOWN;
         } catch (Exception e) {
             return false;
         }

@@ -11,7 +11,7 @@ import java.util.Collection;
 
 public class PrincipalDetails implements UserDetails {
 
-    private Admin admin;
+    private final Admin admin;
 
     public PrincipalDetails(Admin admin) {
         this.admin = admin;

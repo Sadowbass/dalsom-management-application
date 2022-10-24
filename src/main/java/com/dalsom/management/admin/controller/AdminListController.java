@@ -23,6 +23,9 @@ public class AdminListController {
 
     @GetMapping
     public String list(PageParameter pageParameter, SearchCondition condition, Model model) {
+        // spring security를 사용한다면 애초에 해당 url에 접근할때 권한을 확인하기에
+        // 아래처럼 확인하는 작업이 필요없다
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             Object principal = authentication.getPrincipal();

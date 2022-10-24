@@ -34,7 +34,7 @@ public class AdminService {
 
     private void checkDuplicateAdmin(String loginId) {
         if (adminRepository.findByLoginId(loginId).isPresent()) {
-            throw new DuplicateAdminException();
+            throw new DuplicateAdminException("이미 존재하는 아이디입니다");
         }
     }
 

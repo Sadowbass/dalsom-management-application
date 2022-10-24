@@ -38,12 +38,9 @@ public class AdminLoginController {
     private boolean isAlreadyLoggedIn() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!ObjectUtils.isEmpty(authentication)) {
-            long count = authentication.getAuthorities().stream()
+            return authentication.getAuthorities().stream()
                     .map(GrantedAuthority::getAuthority)
-                    .filter(Admin::isCorrectAdminRole)
-                    .count();
-
-            return count > 0;
+                    .anyMatch(Admin::isCorrectAdminRole);
         }
 
         return false;
@@ -61,11 +58,15 @@ public class AdminLoginController {
 
     @GetMapping("/join")
     public String joinForm(@ModelAttribute("form") AdminForm form) {
+        if (isAlreadyLoggedIn()) {
+            return "redirect:/";
+        }
+
         return "join-form";
     }
 
     @PostMapping("/join")
-    public String adminJoin(@ModelAttribute("form") @Valid AdminForm form, BindingResult bindingResult) {
+    public String joinAdmin(@ModelAttribute("form") @Valid AdminForm form, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "join-form";
         }
@@ -74,7 +75,7 @@ public class AdminLoginController {
             adminService.join(form);
         } catch (DuplicateAdminException exception) {
             //TODO refactor ExceptionHandler or ControllerAdvice
-            bindingResult.addError(new FieldError("form", "loginId", "이미 사용중인 id입니다"));
+            bindingResult.addError(new FieldError("form", "loginId", exception.getMessage()));
 
             return "join-form";
         }
