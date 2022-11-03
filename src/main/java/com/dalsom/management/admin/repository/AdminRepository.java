@@ -20,7 +20,5 @@ public interface AdminRepository extends JpaRepository<Admin, Long>, AdminReposi
     List<Admin> findAllByRole(AdminRole role);
 
     List<Admin> findAllByStatus(AdminStatus status, Sort sort);
-
-    Page<Admin> findAllByStatus(AdminStatus status, Pageable pageable);
 }
 

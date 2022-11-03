@@ -1,11 +1,9 @@
 package com.dalsom.management.admin.repository;
 
-import com.dalsom.management.admin.AdminRole;
 import com.dalsom.management.admin.dto.AdminListDto;
 import com.dalsom.management.admin.dto.QAdminListDto;
 import com.dalsom.management.common.SearchCondition;
 import com.querydsl.core.QueryResults;
-import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Page;
@@ -20,11 +18,9 @@ import static com.dalsom.management.admin.QAdmin.admin;
 @Component
 public class AdminRepositoryImpl implements AdminRepositoryCustom {
 
-    private final EntityManager em;
     private final JPAQueryFactory queryFactory;
 
     public AdminRepositoryImpl(EntityManager em) {
-        this.em = em;
         this.queryFactory = new JPAQueryFactory(em);
     }
 
@@ -45,6 +41,6 @@ public class AdminRepositoryImpl implements AdminRepositoryCustom {
     }
 
     public BooleanExpression searchCondition(String category, String keyword) {
-        return category != null ? admin.name.like("%" + keyword + "%") : null;
+        return category != null ? admin.name.containsIgnoreCase(keyword) : null;
     }
 }
