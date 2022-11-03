@@ -4,6 +4,7 @@ import com.dalsom.management.common.PasswordEncoderFactory;
 import com.dalsom.management.common.entity.BaseEntity;
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter(AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Admin extends BaseEntity {
 
     @Id
@@ -28,10 +30,6 @@ public class Admin extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private AdminStatus status;
-
-    protected Admin() {
-
-    }
 
     public static Admin createNewAdmin(String loginId, String password, String name) {
         Admin admin = new Admin();

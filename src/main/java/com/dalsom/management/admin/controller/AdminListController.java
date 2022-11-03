@@ -4,6 +4,7 @@ import com.dalsom.management.admin.AdminService;
 import com.dalsom.management.common.PageParameter;
 import com.dalsom.management.common.SearchCondition;
 import com.dalsom.management.common.config.auth.PrincipalDetails;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -13,13 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class AdminListController {
 
     private final AdminService adminService;
-
-    public AdminListController(AdminService adminService) {
-        this.adminService = adminService;
-    }
 
     @GetMapping
     public String list(PageParameter pageParameter, SearchCondition condition, Model model) {

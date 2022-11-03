@@ -7,6 +7,7 @@ import com.dalsom.management.admin.repository.AdminRepository;
 import com.dalsom.management.common.PageObject;
 import com.dalsom.management.common.PageParameter;
 import com.dalsom.management.common.SearchCondition;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -15,13 +16,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class AdminService {
 
     private final AdminRepository adminRepository;
-
-    public AdminService(AdminRepository adminRepository) {
-        this.adminRepository = adminRepository;
-    }
 
     public Long join(AdminForm form) {
         checkDuplicateAdmin(form.getLoginId());

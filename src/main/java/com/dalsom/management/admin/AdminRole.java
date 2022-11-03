@@ -22,7 +22,7 @@ public enum AdminRole {
         return privilege;
     }
 
-    public boolean canChangeTarget(String admin, String target) {
+    public static boolean canChangeTarget(String admin, String target) {
         AdminRole adminRole = AdminRole.valueOf(admin);
         AdminRole targetRole = AdminRole.valueOf(target);
 
